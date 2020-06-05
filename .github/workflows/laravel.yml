@@ -44,4 +44,3 @@ jobs:
           coverageCommand: composer test-cover
           debug: true
           coverageLocations: "${{github.workspace}}/coverage.xml:clover"
-          prefix: "/"
