@@ -29,6 +29,4 @@ mix.ts("resources/js/app.ts", "public/js")
         }
     });
 
-if (mix.inProduction()) {
-    mix.version()
-}
+mix.inProduction() ? mix.version() : mix.sourceMaps()
