@@ -11,6 +11,6 @@ ALTER SYSTEM SET work_mem = '3276kB';
 ALTER SYSTEM SET min_wal_size = '4GB';
 ALTER SYSTEM SET max_wal_size = '16GB';
 
-CREATE USER web with encrypted password 'p?frPfT6(^u6<:_C';
-CREATE DATABASE news_app;
-GRANT ALL PRIVILEGES ON DATABASE news_app TO web;
+CREATE USER web with encrypted password 'secret';
+CREATE DATABASE app;
+GRANT ALL PRIVILEGES ON DATABASE app TO web;
