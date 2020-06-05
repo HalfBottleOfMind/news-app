@@ -1,0 +1,14 @@
+version: "2"
+plugins:
+  phpcodesniffer:
+    enabled: true
+exclude_patterns:
+  - config/
+  - database/
+  - tests/
+  - vendor/
+  - storage/
+  - routes/
+  - docker/
+  - resources/
+  - public/
