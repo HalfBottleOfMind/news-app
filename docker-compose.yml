@@ -32,7 +32,7 @@ services:
             - pgdata:/var/lib/postgresql/data:rw
         environment:
             - POSTGRES_USER=postgres
-            - POSTGRES_PASSWORD=K!2sWzFJDcx9M7C
+            - POSTGRES_PASSWORD=postgres
         networks:
             - default-network
     redis:

@@ -1,18 +1,23 @@
-import './bootstrap'
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import VueCompositionApi from '@vue/composition-api'
 import router from './routes'
+import store from './store'
 import vuetify from './plugins/vuetify'
-import Default from './layout/Default.vue'
+import i18n from './plugins/i18n'
+import axios from './plugins/axios.js'
+import globalComponents from './globalComponents'
 
-Vue.component('Default', Default)
-
-Vue.use(VueRouter)
 Vue.use(VueCompositionApi)
 
+Vue.prototype.$axios = axios
+
 const app = new Vue({
+    components: {
+        globalComponents
+    },
     vuetify,
     router,
+    store,
+    i18n,
     el: '#app'
 })

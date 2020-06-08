@@ -1,8 +1,7 @@
 import Vue from 'vue'
+import { AxiosStatic } from 'axios'
 
-export interface RootState {
-
-}
+export interface RootState {}
 
 export interface MetaOrderBy {
     name: string
@@ -52,14 +51,8 @@ export interface Auth<T = any> {
     syncRefreshToken(strategyName: string): string
 }
 
-declare module 'vue/types/options' {
-    interface ComponentOptions<V extends Vue> {
-        auth?: boolean | string
-    }
-}
-
 declare module 'vue/types/vue' {
     interface Vue {
-        $auth: Auth
+        $axios: AxiosStatic
     }
 }

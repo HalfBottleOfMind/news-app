@@ -60,7 +60,7 @@
 </template>
 
 <script lang="ts">
-import { ref, computed, onMounted, onUnmounted, defineComponent } from '@vue/composition-api'
+import { ref, computed, defineComponent } from '@vue/composition-api'
 
 export default defineComponent({
     name: 'CommonTable',
@@ -71,7 +71,7 @@ export default defineComponent({
     //     }
     // }
     setup(_props, context) {
-        
+
         const dialog = ref<boolean>(false)
 
         const headers = ref<Array<Object>>([

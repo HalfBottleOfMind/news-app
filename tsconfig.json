@@ -6,7 +6,8 @@
     "lib": [
       "esnext",
       "esnext.asynciterable",
-      "dom"
+      "dom",
+      "dom.iterable"
     ],
     "esModuleInterop": true,
     "sourceMap": true,
@@ -22,10 +23,14 @@
       ]
     },
     "typeRoots": [
-      "./node_modules/@types/node",
+      "./node_modules/@types",
       "./node_modules/vuetify/types"
     ],
     "types": [
+      "@types/node",
+      "@types/webpack-env",
+      "@types/humps",
+      "./node_modules/@d0whc3r/vue-auth-plugin/types",
       "vuetify"
     ],
     "outDir": "public",

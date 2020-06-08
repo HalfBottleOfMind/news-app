@@ -12,10 +12,9 @@ module.exports = {
     'plugin:nuxt/recommended'
   ],
   plugins: [
-    'prettier'
+    'prettier',
   ],
-  // add your custom rules here
-  rules: {
-    'nuxt/no-cjs-in-config': 'off'
+  rules: {    
+    "no-unused-vars": "on",
   }
 }
