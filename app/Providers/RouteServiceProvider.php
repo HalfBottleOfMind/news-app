@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -21,19 +23,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
-
-    /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        //
-
-        parent::boot();
-    }
+    public const HOME = '/';
 
     /**
      * Define the routes for the application.
@@ -42,11 +32,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiRoutes();
+        $this->mapApiV1Routes();
 
         $this->mapWebRoutes();
-
-        //
     }
 
     /**
@@ -70,11 +58,11 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes()
+    protected function mapApiV1Routes()
     {
-        Route::prefix('api')
+        Route::prefix('v1')
             ->middleware(['api', 'return-json'])
-            ->namespace($this->namespace)
-            ->group(base_path('routes/api.php'));
+            ->namespace($this->namespace . '\Api\v1')
+            ->group(base_path('routes/api/v1.php'));
     }
 }

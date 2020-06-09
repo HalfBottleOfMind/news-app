@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
@@ -18,4 +21,6 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('register', [RegisterController::class, 'register'])->name('register');
-Route::get('{any}', [\App\Http\Controllers\IndexController::class, '__invoke'])->where('any', '.*');;
+Route::get('auth/user', [AuthController::class, '__invoke'])->middleware('auth:sanctum')->name('auth.user');
+Route::get('files/{name}', [FileController::class, '__invoke'])->middleware('auth:sanctum')->where('name', '.*');
+Route::get('{any}', [IndexController::class, '__invoke'])->where('any', '.*');

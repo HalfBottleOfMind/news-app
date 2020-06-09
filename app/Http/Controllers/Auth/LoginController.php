@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -27,4 +30,13 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+     /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username(): string
+    {
+        return 'login';
+    }
 }

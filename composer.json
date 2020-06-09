@@ -1,21 +1,25 @@
 {
-    "name": "laravel/laravel",
+    "name": "sergeevpasha/laravel-vue-template",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Laravel + Vue Template.",
     "keywords": [
         "framework",
-        "laravel"
+        "laravel",
+        "template"
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.4",
+        "bensampo/laravel-enum": "^1.37",
+        "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/sanctum": "^2.3",
+        "laravel/sanctum": "^2.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "staudenmeir/eloquent-has-many-deep": "^1.12"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

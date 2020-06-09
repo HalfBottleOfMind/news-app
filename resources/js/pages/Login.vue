@@ -25,7 +25,7 @@
                                     </v-col>
                                     <v-col cols="12" md="8" class="px-4">
                                         <v-text-field
-                                            v-model="email"
+                                            v-model="login"
                                             placeholder="Логин"
                                             single-line
                                             filled
@@ -62,37 +62,28 @@
         </v-container>
     </v-content>
 </template>
-<script>
-export default {
+<script lang="ts">
+import { toRefs, ref, computed, reactive, defineComponent } from '@vue/composition-api'
+export default defineComponent({
     name: 'login',
-    data() {
-        return {
-            email: '',
-            password: ''
+    setup(_props, context) {
+        const store = context.root.$store
+
+        const data = reactive({
+            login: '',
+            password: '',
+        })
+
+        async function logIn() {            
+            store.dispatch('login', data)
         }
-    },
-    methods: {
-        logIn() {
-            if (process.browser) {
-                this.$axios.$get('/sanctum/csrf-cookie').then(() => {
-                    this.$auth
-                        .loginWith('local', {
-                            data: {
-                                email: this.email,
-                                password: this.password
-                            }
-                        })
-                        .then(
-                            (success) => {
-                                console.log(success)
-                            },
-                            (error) => console.log(error.response.data)
-                        )
-                })
-            }
+
+        return {
+            ...toRefs(data),
+            logIn
         }
     }
-}
+})
 </script>
 <style lang="scss" scoped>
 .rounded {

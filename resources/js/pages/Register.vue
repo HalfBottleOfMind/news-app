@@ -21,9 +21,9 @@
                                     <v-col cols="12" md="10" class="px-4">
                                         <v-form ref="form" @submit.prevent="register">
                                             <v-text-field
-                                                v-model="name"
-                                                name="name"
-                                                :label="$t('name')"
+                                                v-model="login"
+                                                name="login"
+                                                :label="$t('login')"
                                                 prepend-inner-icon="mdi-account"
                                                 autocomplete="off"
                                                 hide-details
@@ -106,7 +106,7 @@ export default defineComponent({
         const showPass = ref<boolean>(false)
 
         const data = reactive({
-            name: '',
+            login: '',
             email: '',
             password: '',
             passwordConfirmation: ''
