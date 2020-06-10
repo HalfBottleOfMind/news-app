@@ -81,7 +81,7 @@ class ApiRoute
     }
 
     /**
-     * Initialize policy by models
+     * Initialize policy by Repository Contract
      *
      * Can be multiple in case of nested routes like:
      * /v1/users/1/emails/1
@@ -89,9 +89,9 @@ class ApiRoute
      * @param  string $policy
      * @return self
      */
-    public function policy(string $models): self
+    public function policy(string $contract): self
     {
-        $this->policy = $models;
+        $this->policy = $contract;
         return $this;
     }
 

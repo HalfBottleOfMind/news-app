@@ -21,11 +21,6 @@ use App\Http\Resources\Api\v1\PermissionResource;
 |
 */
 
-Route::group(['prefix' => 'users'], function () {
-    Route::post('token/create', [UserController::class, 'issueToken'])->name('users.token.issue');
-    Route::post('token/delete', [UserController::class, 'revokeToken'])->name('users.token.revoke');
-});
-
 ApiRoute::name('users')
     ->slug('user')
     ->controller(UserController::class)

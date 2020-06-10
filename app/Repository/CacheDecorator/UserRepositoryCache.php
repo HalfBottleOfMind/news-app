@@ -86,37 +86,4 @@ class UserRepositoryCache extends BaseRepositoryCache implements UserRepositoryC
     {
         return $this->repository->permissions($id);
     }
-
-    /**
-     * Get User Emails
-     *
-     * @param  int $id
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function emails(int $id): ?Collection
-    {
-        return $this->repository->emails($id);
-    }
-    
-    /**
-     * Get User personal and global filters
-     *
-     * @param  int $id
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function filters(int $id): ?Collection
-    {
-        return $this->repository->filters($id);
-    }
-
-    /**
-     * Display Watched Users by this User
-     *
-     * @param  int $id
-     * @return \Illuminate\Database\Eloquent\Collection
-     */
-    public function watchedUsers(int $id): ?Collection
-    {
-        return $this->repository->watchedUsers($id);
-    }
 }

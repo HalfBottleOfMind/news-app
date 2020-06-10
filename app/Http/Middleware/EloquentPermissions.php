@@ -6,10 +6,12 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
+use App\Repository\Contracts\UserRepositoryContract;
 
-class Permissions
+class EloquentPermissions
 {
     /**
      * Handle an incoming request and make authorization.
@@ -22,11 +24,12 @@ class Permissions
     {
         logger($ability);
         logger($models);
+        logger($request->route()->parameters());
         if ($request->route()->parameters()) {
             logger($request->route()->parameters());
             Gate::authorize($ability, ...$this->getModelsInstances($request, $models));
         } else {
-            Gate::authorize($ability, new $models[0]());
+            Gate::authorize($ability, resolve($models[0]));
         }
         return $next($request);
     }
