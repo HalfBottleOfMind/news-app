@@ -8,7 +8,7 @@ import Register from './pages/Register.vue'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+const router = new VueRouter({
     mode: 'history',
     routes: [
         {
@@ -28,14 +28,32 @@ export default new VueRouter({
                 {
                     path: '',
                     name: 'main',
-                    component: Main
+                    component: Main,
+                    meta: { auth: true }
                 },
                 {
                     path: '/users',
                     name: 'users',
-                    component: User
+                    component: User,
+                    meta: { auth: true }
                 }
             ]
         }
     ]
 })
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => record.meta.auth)) {
+        if (!localStorage.getItem('loggedIn')) {
+            next({
+                path: '/login'
+            })
+        } else {
+            next()
+        }
+    } else {
+        next()
+    }
+})
+
+export default router

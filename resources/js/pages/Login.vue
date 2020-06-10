@@ -60,6 +60,7 @@
                 </v-col>
             </v-row>
         </v-container>
+        <AlertMessage />
     </v-content>
 </template>
 <script lang="ts">

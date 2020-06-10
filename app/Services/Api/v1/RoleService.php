@@ -61,7 +61,6 @@ class RoleService
     public function create(Request $request): void
     {
         $model = $this->repository->create($request);
-        CreateModelEvent::dispatch(auth()->user(), $model);
     }
         
     /**
@@ -75,7 +74,6 @@ class RoleService
     {
         $oldData = $this->repository->find($id);
         $this->repository->update($id, $request);
-        UpdateModelEvent::dispatch(auth()->user(), $this->repository->find($id), $oldData);
     }
 
     /**
@@ -102,8 +100,5 @@ class RoleService
         $class = get_class($data);
         $data = $data->toArray();
         $this->repository->delete($id);
-        if (auth()->user()->id != $id) {
-            DeleteModelEvent::dispatch(auth()->user(), $data, $class);
-        }
     }
 }

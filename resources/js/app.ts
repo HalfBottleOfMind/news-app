@@ -19,5 +19,8 @@ const app = new Vue({
     router,
     store,
     i18n,
-    el: '#app'
+    el: '#app',
+    created() {
+        this.$store.dispatch('initialize')
+    }
 })

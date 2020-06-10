@@ -22,11 +22,7 @@ class EloquentPermissions
      */
     public function handle($request, Closure $next, $ability, ...$models)
     {
-        logger($ability);
-        logger($models);
-        logger($request->route()->parameters());
         if ($request->route()->parameters()) {
-            logger($request->route()->parameters());
             Gate::authorize($ability, ...$this->getModelsInstances($request, $models));
         } else {
             Gate::authorize($ability, resolve($models[0]));

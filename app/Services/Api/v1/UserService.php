@@ -65,7 +65,6 @@ class UserService
     public function create(Request $request): void
     {
         $model = $this->repository->create($request);
-        CreateModelEvent::dispatch(auth()->user(), $model);
     }
         
     /**
@@ -79,7 +78,6 @@ class UserService
     {
         $oldData = $this->repository->find($id);
         $this->repository->update($id, $request);
-        UpdateModelEvent::dispatch(auth()->user(), $this->repository->find($id), $oldData);
     }
 
     /**
@@ -105,7 +103,6 @@ class UserService
         $data = $this->repository->find($id);
         if (! $data) {
             $this->repository->restore($id);
-            RestoreModelEvent::dispatch(auth()->user(), $this->repository->find($id));
         }
     }
 
@@ -120,9 +117,6 @@ class UserService
         $data = $this->repository->find($id);
         if ($data) {
             $this->repository->softDelete($id);
-            if (auth()->user()->id != $id) {
-                SoftDeleteModelEvent::dispatch(auth()->user(), $data);
-            }
         }
     }
         
@@ -138,9 +132,6 @@ class UserService
         $class = get_class($data);
         $data = $data->toArray();
         $this->repository->delete($id);
-        if (auth()->user()->id != $id) {
-            DeleteModelEvent::dispatch(auth()->user(), $data, $class);
-        }
     }
     
     /**

@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $testEnv = app()->runningUnitTests();
         Model::unguard();
         
         if ($this->command->confirm('Clear DB before seeding?', false)) {

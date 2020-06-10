@@ -15,15 +15,14 @@ export default new Vuex.Store({
     mutations: {
         setUserData(state, userData) {
             state.user = userData
-            localStorage.setItem('user', JSON.stringify(userData))
+            localStorage.setItem('loggedIn', 'true')
         },
 
         clearUserData() {
-            localStorage.removeItem('user')
+            localStorage.removeItem('loggedIn')
             location.reload()
         }
     },
-
     actions: {
         login({ dispatch }, credentials) {            
             return axios.get('/sanctum/csrf-cookie').then(() => {
@@ -31,19 +30,24 @@ export default new Vuex.Store({
                     await dispatch('fetchAuthUser')
                     dispatch('alert/flashMessage', { color: 'success', message: 'Вход осуществлен успешно' })
                 })
+                .catch(({ response }: any) => {
+                    dispatch('alert/flashErrorMessage', { color: 'error', messages: response.data.errors })
+                })
+            
             })
         },
         fetchAuthUser({ commit }) {            
             return axios.get('/auth/user').then(({ data }: any) => {
-                console.log(data)
                 commit('setUserData', data)
             })
         },
         logout({ commit }) {
             commit('clearUserData')
+        },
+        async initialize({ dispatch }) {
+            await dispatch('fetchAuthUser')
         }
     },
-
     getters: {
         isLogged: (state) => !!state.user
     }
